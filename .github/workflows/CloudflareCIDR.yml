@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -36,8 +36,7 @@ jobs:
           echo "没有文件变更，跳过提交"
         else
           echo "检测到文件变更，开始提交"
-          git commit -m "Downloaded file on $(date "+%Y/%m/%d %H:%M:%S")"
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{github.repository}}.git
+          git commit -m "Update CloudflareCIDR file on $(date "+%Y/%m/%d %H:%M:%S")"
           git push
           echo "提交完成"
         fi
