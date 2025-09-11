@@ -32,7 +32,12 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add .
-          git commit -m "Downloaded file on $(date "+%Y/%m/%d %H:%M:%S")"
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{github.repository}}.git
-          git push
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "没有文件变更，跳过提交"
+          else
+            git add .
+            git commit -m "Update file adobe on $(date \"+%Y/%m/%d %H:%M:%S\")"
+            git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{github.repository}}.git
+            git push
+            echo "提交完成"
+          fi
