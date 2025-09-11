@@ -6,7 +6,7 @@ on:
     - cron: '0 0 */3 * *'
   # 手动触发
   workflow_dispatch:
-  
+
 permissions:
   contents: write
 
@@ -33,5 +33,6 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
-          git commit -m "Update adobe file on $(date "+%Y/%m/%d %H:%M:%S")"
+          git commit -m "Downloaded file on $(date "+%Y/%m/%d %H:%M:%S")"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{github.repository}}.git
           git push
