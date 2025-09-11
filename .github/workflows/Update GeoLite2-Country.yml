@@ -57,7 +57,7 @@ jobs:
           echo "GeoLite2-Country.mmdb 文件没有变化，跳过提交"
         else
           echo "检测到 GeoLite2-Country.mmdb 文件有变化，开始提交"
-          git add GeoLite2-Country.mmdb
+          git add .
           git commit -m "🔄 更新IP库文件 $(date '+%Y-%m-%d %H:%M:%S')"
           git push
           echo "提交完成"
