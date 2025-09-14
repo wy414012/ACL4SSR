@@ -14,12 +14,12 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v6
       with:
-        python-version: '3.x'  # 选择 Python 版本
+        python-version: '3.13'  # 选择 Python 版本
 
     - name: Install requests library
       run: |
@@ -43,3 +43,4 @@ jobs:
           git push
           echo "提交完成"
         fi
+
